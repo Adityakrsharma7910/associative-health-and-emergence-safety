@@ -59,7 +59,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   loadingStepText,
   userLocation,
   onRequestLocation,
-  recentReports,
+  recentReports = [],
   onOpenSOS,
 }) => {
   const [inputText, setInputText] = useState('');
@@ -108,16 +108,16 @@ export const Dashboard: React.FC<DashboardProps> = ({
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate type
-    const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
+    // Validate type: JPEG, PNG, WEBP only
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (!validTypes.includes(file.type)) {
       setValidationError('Please upload a valid image file (JPEG, PNG, or WEBP).');
       return;
     }
 
-    // Validate size (max 10MB)
-    if (file.size > 10 * 1024 * 1024) {
-      setValidationError('Image size must be under 10MB.');
+    // Validate size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setValidationError('Image size must be under 5MB.');
       return;
     }
 
@@ -142,13 +142,19 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputText.trim() && !selectedImage) {
+    const trimmed = inputText.trim();
+    if (!trimmed && !selectedImage) {
       setValidationError('Please describe the emergency in text or upload a photo.');
       return;
     }
 
+    if (trimmed.length > 2000) {
+      setValidationError('Emergency description is too long (maximum 2000 characters).');
+      return;
+    }
+
     setValidationError(null);
-    onAnalyze(inputText.trim(), selectedImage || undefined, imageMimeType);
+    onAnalyze(trimmed, selectedImage || undefined, imageMimeType);
   };
 
   // Filtered guides
@@ -262,6 +268,9 @@ export const Dashboard: React.FC<DashboardProps> = ({
         </div>
 
         <form onSubmit={handleFormSubmit} className="space-y-4">
+          <label htmlFor="emergency-description-input" className="sr-only">
+            Describe the emergency or safety hazard
+          </label>
           
           {/* Main Textarea */}
           <div className="relative">
@@ -273,6 +282,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
               rows={3}
               className="w-full rounded-2xl bg-slate-50 border border-slate-200 p-4 text-sm sm:text-base font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-600/10 transition-all resize-none"
               disabled={isLoading}
+              aria-label="Emergency description"
             />
 
             {/* Voice Mic inside Textarea */}
@@ -286,7 +296,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     : 'bg-slate-200/80 hover:bg-slate-300 text-slate-700'
                 }`}
                 title={isRecording ? 'Stop voice recording' : 'Speak your emergency'}
-                aria-label="Voice input"
+                aria-label="Voice Input"
               >
                 {isRecording ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
               </button>
@@ -353,6 +363,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
               onClick={() => fileInputRef.current?.click()}
               disabled={isLoading}
               className="inline-flex items-center justify-center space-x-2 px-4 py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-bold transition-all border border-slate-200"
+              aria-label="Upload Image"
             >
               <Camera className="w-4 h-4 text-slate-600" />
               <span>{selectedImage ? 'Change Photo' : 'Attach Photo / Camera'}</span>
@@ -368,6 +379,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   ? 'bg-indigo-400 cursor-not-allowed'
                   : 'bg-indigo-600 hover:bg-indigo-700 active:scale-98 shadow-indigo-600/30'
               }`}
+              aria-label="Analyze Emergency"
             >
               {isLoading ? (
                 <>
@@ -405,6 +417,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             <button
               onClick={onRequestLocation}
               className="px-3 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition-colors"
+              aria-label="Share Location"
             >
               {userLocation ? 'Update GPS' : 'Share Location'}
             </button>
@@ -446,6 +459,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           <button
             onClick={onOpenSOS}
             className="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs shadow-md shadow-rose-600/20 transition-all flex items-center justify-center space-x-1.5"
+            aria-label="Instant Campus SOS"
           >
             <span>Open Emergency Dial</span>
           </button>

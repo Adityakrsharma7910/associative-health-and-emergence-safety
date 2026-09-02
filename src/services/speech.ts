@@ -14,7 +14,7 @@ export function isSpeechRecognitionSupported(): boolean {
 
 export function isSpeechSynthesisSupported(): boolean {
   if (typeof window === 'undefined') return false;
-  return 'speechSynthesis' in window;
+  return Boolean(window.speechSynthesis);
 }
 
 export class SpeechRecognitionService {
@@ -102,6 +102,10 @@ export class SpeechRecognitionService {
 export class TextToSpeechService {
   private utterance: SpeechSynthesisUtterance | null = null;
   private isSpeaking = false;
+
+  isSupported(): boolean {
+    return isSpeechSynthesisSupported();
+  }
 
   speak(
     text: string,

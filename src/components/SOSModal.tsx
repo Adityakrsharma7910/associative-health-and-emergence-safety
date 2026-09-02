@@ -21,10 +21,39 @@ interface SOSModalProps {
   onRequestLocation: () => void;
 }
 
+const DEFAULT_CONTACTS: EmergencyContact[] = [
+  {
+    id: 'campus-security',
+    title: 'Campus Security & Safety',
+    subtitle: '24/7 Emergency Dispatch',
+    phone: '+1-800-555-0199',
+    type: 'security',
+    iconName: 'ShieldAlert',
+    isPrimary: true,
+  },
+  {
+    id: 'campus-medical',
+    title: 'Campus Medical Room',
+    subtitle: 'Nurse Station & Urgent Care',
+    phone: '+1-800-555-0144',
+    type: 'medical',
+    iconName: 'HeartPulse',
+    isPrimary: true,
+  },
+  {
+    id: 'personal-contact',
+    title: 'Personal ICE Contact',
+    subtitle: 'Parent / Guardian',
+    phone: '+1-800-555-0100',
+    type: 'personal',
+    iconName: 'UserCheck',
+  },
+];
+
 export const SOSModal: React.FC<SOSModalProps> = ({
   isOpen,
   onClose,
-  contacts,
+  contacts = [],
   userLocation,
   onRequestLocation,
 }) => {
@@ -32,6 +61,8 @@ export const SOSModal: React.FC<SOSModalProps> = ({
   const [alertSentStatus, setAlertSentStatus] = useState<string | null>(null);
 
   if (!isOpen) return null;
+
+  const displayContacts = contacts && contacts.length > 0 ? contacts : DEFAULT_CONTACTS;
 
   const locationStr = userLocation
     ? `https://maps.google.com/?q=${userLocation.latitude},${userLocation.longitude}`
@@ -121,7 +152,7 @@ Please respond immediately.`;
           <div className="space-y-2.5">
             <p className="text-xs font-bold uppercase tracking-wider text-slate-500 px-1">Direct Call Options</p>
             
-            {contacts.map((contact) => (
+            {displayContacts.map((contact) => (
               <div
                 key={contact.id}
                 className="p-3.5 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 transition-all flex items-center justify-between group shadow-xs"
