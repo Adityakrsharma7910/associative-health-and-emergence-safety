@@ -1,0 +1,7 @@
+{
+  "name": "SafeGuard AI",
+  "description": "Multimodal Campus Health & Emergency Safety Companion powered by Gemini AI. Provides rapid first-aid instructions, hazard reporting, multilingual safety guidance, and emergency contacts.",
+  "requestFramePermissions": ["geolocation", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

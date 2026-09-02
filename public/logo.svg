@@ -1,0 +1,94 @@
+<svg viewBox="0 0 400 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shieldShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" floodColor="#0f172a" floodOpacity="0.25" />
+    </filter>
+    <linearGradient id="centerBlueGrad" x1="200" y1="20" x2="200" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#1e3a8a" />
+      <stop offset="50%" stopColor="#1d4ed8" />
+      <stop offset="100%" stopColor="#0f172a" />
+    </linearGradient>
+    <linearGradient id="leftWingGrad" x1="60" y1="50" x2="160" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#0284c7" />
+      <stop offset="100%" stopColor="#0369a1" />
+    </linearGradient>
+    <linearGradient id="rightWingGrad" x1="240" y1="50" x2="340" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#059669" />
+      <stop offset="100%" stopColor="#047857" />
+    </linearGradient>
+    <filter id="ecgGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#ef4444" floodOpacity="0.6" />
+    </filter>
+    <clipPath id="shieldClip">
+      <path d="M200 30 C270 30, 340 55, 345 120 C350 250, 270 330, 200 380 C130 330, 50 250, 55 120 C60 55, 130 30, 200 30 Z" />
+    </clipPath>
+  </defs>
+  <path
+    d="M200 20 C280 20, 360 48, 365 120 C372 270, 280 360, 200 410 C120 360, 28 270, 35 120 C40 48, 120 20, 200 20 Z"
+    fill="#0c1938"
+    filter="url(#shieldShadow)"
+  />
+  <g clipPath="url(#shieldClip)">
+    <rect width="400" height="450" fill="url(#centerBlueGrad)" />
+    <path d="M50 30 L160 30 L150 380 L50 380 Z" fill="url(#leftWingGrad)" />
+    <path d="M240 30 L350 30 L350 380 L250 380 Z" fill="url(#rightWingGrad)" />
+    <path d="M150 20 L250 20 L250 390 L150 390 Z" fill="url(#centerBlueGrad)" />
+    <g transform="translate(85, 75) scale(1.1)" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.5 4h-5L7 7H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-5l-2.5-3z" />
+      <circle cx="10" cy="13" r="3.5" />
+    </g>
+    <g transform="translate(85, 140) scale(1.1)" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="0" y="2" width="20" height="14" rx="3" />
+      <line x1="4" y1="6" x2="16" y2="6" />
+      <line x1="4" y1="10" x2="12" y2="10" />
+      <path d="M4 16 L2 20 L8 16" />
+    </g>
+    <g transform="translate(285, 75) scale(1.1)" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="2" width="8" height="12" rx="4" />
+      <path d="M2 10a8 8 0 0 0 16 0" />
+      <line x1="10" y1="18" x2="10" y2="22" />
+      <line x1="6" y1="22" x2="14" y2="22" />
+    </g>
+    <g transform="translate(285, 140) scale(1.1)" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="0" y="2" width="20" height="15" rx="3" />
+      <circle cx="5.5" cy="6.5" r="1.5" />
+      <path d="m20 13-6-6-8 8" />
+    </g>
+    <path
+      d="M175 75 H225 V110 H260 V160 H225 V195 H175 V160 H140 V110 H175 Z"
+      fill="#ffffff"
+    />
+    <path
+      d="M60 215 L140 215 L160 215 L175 165 L195 260 L215 150 L235 240 L250 215 L340 215"
+      stroke="#dc2626"
+      stroke-width="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+      filter="url(#ecgGlow)"
+    />
+    <path
+      d="M70 320 C90 320, 110 330, 135 320 C165 305, 185 285, 195 240 C190 265, 160 295, 130 300 C105 305, 80 295, 60 270 C55 295, 60 315, 70 320 Z"
+      fill="#ffffff"
+    />
+    <path
+      d="M80 340 C105 340, 135 345, 160 330 C185 315, 195 290, 200 270 C190 288, 170 310, 145 318 C120 325, 95 320, 75 300 C70 320, 75 335, 80 340 Z"
+      fill="#ffffff"
+    />
+    <path
+      d="M330 320 C310 320, 290 330, 265 320 C235 305, 215 285, 205 240 C210 265, 240 295, 270 300 C295 305, 320 295, 340 270 C345 295, 340 315, 330 320 Z"
+      fill="#ffffff"
+    />
+    <path
+      d="M320 340 C295 340, 265 345, 240 330 C215 315, 205 290, 200 270 C210 288, 230 310, 255 318 C280 325, 305 320, 325 300 C330 320, 325 335, 320 340 Z"
+      fill="#ffffff"
+    />
+  </g>
+  <path
+    d="M200 30 C270 30, 340 55, 345 120 C350 250, 270 330, 200 380 C130 330, 50 250, 55 120 C60 55, 130 30, 200 30 Z"
+    stroke="#ffffff"
+    stroke-width="6"
+    stroke-opacity="0.4"
+    fill="none"
+  />
+</svg>
