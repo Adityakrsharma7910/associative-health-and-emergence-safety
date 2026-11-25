@@ -104,7 +104,7 @@ npm start
 
 ---
 
-## 🎯 3-Minute Hackathon Demo Flow
+## 🎯 3-Minute Hackathon Demo Flow.
 
 1. **Introduction (30s)**: Introduce SafeGuard AI and the challenge of campus panic during sudden injuries or hazards.
 2. **Scenario 1 - Medical Emergency (60s)**:
